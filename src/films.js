@@ -1,19 +1,39 @@
+const movies = require("./data");
+
 // Exercise 1: Get the array of all directors.
 function getAllDirectors(array) {
-  let result =  ???;
-  console.log("EXERCICE 1 ->", result);
+  let result = array.map(film => film.director)
+  // console.log("EXERCICE 1 ->", result);
   return result;
 }
 
+
 // Exercise 2: Get the films of a certain director
 function getMoviesFromDirector(array, director) {
- 
+let moviesFromDirector = array.filter(mov => mov.director === director)
+return moviesFromDirector
 }
 
 // Exercise 3: Calculate the average of the films of a given director.
 function moviesAverageOfDirector(array, director) {
+let avgScore = 0
+let strToNum = 0
+//we save given arr by function in a variable
+let moviesFromDirector = getMoviesFromDirector(array,director)
+ const sumScore = moviesFromDirector.reduce((acc, curr)=>{
+  //avoiding undefined
+  curr.score = curr.score || 0;
+  acc += curr.score;
+  return acc
   
+},0)
+
+avgScore =  Number((sumScore / moviesFromDirector.length)).toFixed(2)
+//toFixed gives back a str!qqqqqqq
+strToNum = parseFloat(avgScore)
+return strToNum
 }
+
 
 // Exercise 4:  Alphabetic order by title 
 function orderAlphabetically(array) {

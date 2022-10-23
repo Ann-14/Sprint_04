@@ -37,5 +37,20 @@
   },
   "dependencies": {
     "browserify": "^17.0.0"
-  }
+  },
+  "description": "A company in the audiovisual sector has asked us for a web application that will allow their employees to quickly find movies from a large database they have, since the process is currently done manually.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ann-14/Sprint_04.git"
+  },
+  "keywords": [],
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/Ann-14/Sprint_04/issues"
+  },
+  "homepage": "https://github.com/Ann-14/Sprint_04#readme"
 }
