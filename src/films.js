@@ -37,13 +37,35 @@ return strToNum
 
 // Exercise 4:  Alphabetic order by title 
 function orderAlphabetically(array) {
-  
+const titles = array.map(film => film.title).sort().slice(0,20)
+console.log(titles);
+return titles
 }
 
 // Exercise 5: Order by year, ascending
-function orderByYear() {
+function orderByYear(array) {
+    const arr = [...array]
+
+arr.sort((a,b) => {
+    if(a.year === b.year){
+      if (a.title < b.title) {
+        return -1;
+      }
+      if (a.title > b.title) {
+        return 1;
+      }
+      return 0;
+    }else{
+      return a.year - b.year
+    }
+  
+  })
+
+  return arr
 
 }
+
+orderByYear(movies)
 
 // Exercise 6: Calculate the average of the movies in a category
 function moviesAverageByCategory() {
