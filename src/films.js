@@ -2,52 +2,50 @@ const movies = require("./data");
 
 // Exercise 1: Get the array of all directors.
 function getAllDirectors(array) {
-  let result = array.map(film => film.director)
+  const result = array.map(film => film.director)
   // console.log("EXERCICE 1 ->", result);
   return result;
 }
 
-
 // Exercise 2: Get the films of a certain director
 function getMoviesFromDirector(array, director) {
-let moviesFromDirector = array.filter(mov => mov.director === director)
-return moviesFromDirector
+  const moviesFromDirector = array.filter(mov => mov.director === director)
+  return moviesFromDirector
 }
 
 // Exercise 3: Calculate the average of the films of a given director.
 function moviesAverageOfDirector(array, director) {
-let avgScore = 0
-let strToNum = 0
-//we save given arr by function in a variable
-let moviesFromDirector = getMoviesFromDirector(array,director)
- const sumScore = moviesFromDirector.reduce((acc, curr)=>{
-  //avoiding undefined
-  curr.score = curr.score || 0;
-  acc += curr.score;
-  return acc
-  
-},0)
+  let avgScore = 0
+  let strToNum = 0
+  let currentScore = 0
+  //we save given arr by function in a variable
+  const moviesFromDirector = getMoviesFromDirector(array, director)
+  const sumScore = moviesFromDirector.reduce((acc, curr) => {
+    //avoiding undefined
+    currentScore = curr.score = '' || undefined || NaN ? 0 : curr.score
+    acc += currentScore;
+    return acc
 
-avgScore =  Number((sumScore / moviesFromDirector.length)).toFixed(2)
-//toFixed gives back a str!qqqqqqq
-strToNum = parseFloat(avgScore)
-return strToNum
+  }, 0)
+
+  avgScore = Number((sumScore / moviesFromDirector.length)).toFixed(2)
+  //toFixed gives back a str!
+  strToNum = parseFloat(avgScore)
+  return strToNum
 }
-
 
 // Exercise 4:  Alphabetic order by title 
 function orderAlphabetically(array) {
-const titles = array.map(film => film.title).sort().slice(0,20)
-console.log(titles);
-return titles
+  const titles = array.map(film => film.title).sort().slice(0, 20)
+  console.log(titles);
+  return titles
 }
 
 // Exercise 5: Order by year, ascending
 function orderByYear(array) {
-    const arr = [...array]
-
-arr.sort((a,b) => {
-    if(a.year === b.year){
+  const arr = [...array]
+  arr.sort((a, b) => {
+    if (a.year === b.year) {
       if (a.title < b.title) {
         return -1;
       }
@@ -55,21 +53,35 @@ arr.sort((a,b) => {
         return 1;
       }
       return 0;
-    }else{
+
+    } else {
       return a.year - b.year
     }
-  
   })
-
   return arr
-
 }
 
-orderByYear(movies)
-
 // Exercise 6: Calculate the average of the movies in a category
-function moviesAverageByCategory() {
+function moviesAverageByCategory(array, genre) {
+  const arr = [...array]
+  let filmByGenre = []
+  let total = 0
 
+  //we select movies of one genre
+  filmByGenre = arr.filter(film => film.genre.includes(genre)).filter(film => film.score !== '')
+  //We put films of a selected genre in a variable and calculate total score
+
+  //  filmByGenre.reduce((acc,curr) => {
+  //  total = acc + curr.score
+  //  return total
+  // },0)
+
+  //  total = filmByGenre.reduce((acc,curr) => acc + curr.score,0) / filmByGenre.length.toFixed(2)
+  total = filmByGenre.reduce((acc, curr) => acc + curr.score, 0)
+  total = (total / filmByGenre.length).toFixed(2)
+  //toFixed gives back a str!
+  total = parseFloat(total)
+  return total
 }
 
 // Exercise 7: Modify the duration of movies to minutes
@@ -79,10 +91,8 @@ function hoursToMinutes() {
 
 // Exercise 8: Get the best film of a year
 function bestFilmOfYear() {
-  
+
 }
-
-
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
