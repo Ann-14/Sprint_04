@@ -85,14 +85,69 @@ function moviesAverageByCategory(array, genre) {
 }
 
 // Exercise 7: Modify the duration of movies to minutes
-function hoursToMinutes() {
+function hoursToMinutes(array) {
+const arrayCopy = [...array] 
+let arr = []
+
+let noMin =0 
+
+
+
+// arrayCopy.forEach(film => {
+
+//   film.duration =  parseInt(film.duration[0] * 60) + (parseInt(film.duration.slice(3,5)))
+//   return arrayCopy
+// })
+
+ arr = arrayCopy.map(film => {
+
+  if(film.duration[3] === undefined){
+    film.duration =  Number (parseInt(film.duration[0] * 60) + parseInt(noMin))
+    film.duration  = parseFloat(film.duration)
+  } else{
+    film.duration =  Number( parseInt(film.duration[0] * 60) + (parseInt(film.duration.slice(3,5))))
+    film.duration  = parseFloat(film.duration)
+  }
+
+  arr.push(arrayCopy)
+  
+  return arr
+})
+
+ return arr
 
 }
+hoursToMinutes(movies)
 
 // Exercise 8: Get the best film of a year
-function bestFilmOfYear() {
+function bestFilmOfYear(array, year) {
+const arrFilms = [...array]
+let filmsOfYear = []
+let finalArr = []
+let bestFilm = 0
+
+
+arrFilms.forEach(film =>{
+  if(film.year === year){
+  filmsOfYear.push(film)
+  }
+})
+
+ filmsOfYear.forEach(film => {
+  
+  if(bestFilm < film.score){
+    bestFilm = film
+  }
+  
+  return bestFilm
+})
+ 
+finalArr.push(bestFilm)
+
+ return finalArr;
 
 }
+
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
