@@ -88,13 +88,9 @@ function moviesAverageByCategory(array, genre) {
 function hoursToMinutes(array) {
 const arrayCopy = [...array] 
 let arr = []
-
 let noMin =0 
 
-
-
 // arrayCopy.forEach(film => {
-
 //   film.duration =  parseInt(film.duration[0] * 60) + (parseInt(film.duration.slice(3,5)))
 //   return arrayCopy
 // })
@@ -110,10 +106,8 @@ let noMin =0
   }
 
   arr.push(arrayCopy)
-  
   return arr
 })
-
  return arr
 
 }
@@ -126,26 +120,19 @@ let filmsOfYear = []
 let finalArr = []
 let bestFilm = 0
 
-
 arrFilms.forEach(film =>{
   if(film.year === year){
   filmsOfYear.push(film)
   }
 })
-
- filmsOfYear.forEach(film => {
-  
+filmsOfYear.forEach(film => {
   if(bestFilm < film.score){
     bestFilm = film
   }
-  
   return bestFilm
-})
- 
+}) 
 finalArr.push(bestFilm)
-
- return finalArr;
-
+return finalArr;
 }
 
 
